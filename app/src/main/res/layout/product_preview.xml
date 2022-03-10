@@ -5,9 +5,9 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="110dp"
-        android:layout_height="107dp"
-        android:background="@drawable/round_shape"
+        android:layout_width="120dp"
+        android:layout_height="110dp"
+        android:background="@color/white"
         android:onClick="@{(view)->viewModel.openProductList()}"
         android:orientation="vertical">
 
