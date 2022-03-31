@@ -10,6 +10,7 @@ import com.example.bf_kotlin_client.fragments.favorites.FavoriteProductsFragment
 import com.example.bf_kotlin_client.fragments.products.*
 import com.example.bf_kotlin_client.fragments.profile.ProfileFragment
 import com.example.bf_kotlin_client.fragments.support.SupportMainPageFragment
+import com.example.bf_kotlin_client.fragments.support.SupportNotMainPageFragment
 
 
 class AppFragmentManager(private var fragmentManager: FragmentManager) {
@@ -31,6 +32,7 @@ class AppFragmentManager(private var fragmentManager: FragmentManager) {
         SupportMainPageFragment,
         ProductsInCategoryFragment,
         ProductFragment,
+        SupportNotMainPageFragment,
     }
     init {
         var containerId = R.id.frameLayoutActivityMain
@@ -76,6 +78,7 @@ class AppFragmentManager(private var fragmentManager: FragmentManager) {
         var newFragment: Fragment = when (fragmentName) {
             FragmentsName.ProductsInCategoryFragment -> ProductsInCategoryFragment()
             FragmentsName.ProductFragment-> ProductFragment()
+            FragmentsName.SupportNotMainPageFragment-> SupportNotMainPageFragment()
             else -> throw IllegalArgumentException("This Fragment can't be instantiate")
         }
 

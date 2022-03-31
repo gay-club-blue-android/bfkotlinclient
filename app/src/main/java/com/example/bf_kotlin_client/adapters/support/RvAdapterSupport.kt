@@ -9,26 +9,34 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bf_kotlin_client.R
 import com.example.bf_kotlin_client.adapters.products.RvAdapterProducts
 import com.example.bf_kotlin_client.apiworkers.ImageApiWorker
-import com.example.bf_kotlin_client.databinding.FragmentProductsInCategoryBinding
-import com.example.bf_kotlin_client.databinding.ProductCategoryPreviewBinding
-import com.example.bf_kotlin_client.databinding.ProductPreviewBinding
-import com.example.bf_kotlin_client.databinding.SupportPreviewBinding
+import com.example.bf_kotlin_client.databinding.*
 import com.example.bf_kotlin_client.dtos.entities.Faq
+import com.example.bf_kotlin_client.utils.AppFragmentManager
 import com.example.bf_kotlin_client.utils.GlobalVariables
 import java.util.ArrayList
 
-class RvAdapterSupport(private var faqs: ArrayList<Faq>):
-    RecyclerView.Adapter<RvAdapterSupport.ViewHolder>()  {
+class RvAdapterSupport(private var faqs: ArrayList<Faq>) :
+    RecyclerView.Adapter<RvAdapterSupport.ViewHolder>() {
+    private var globalVariables = GlobalVariables.instance
+    private var fragmentManager = globalVariables.fragmentManager
 
     inner class ViewHolder internal constructor(var binding: SupportPreviewBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        private var globalVariables = GlobalVariables.instance
 
         var faq = Faq()
+
+        fun openSupportNotMainPageFragment() {
+            fragmentManager.openFragmentAboveMain(AppFragmentManager.FragmentsName.SupportNotMainPageFragment)
+            var binding =
+                fragmentManager.getCurrentFragmentBinding<FragmentSupportNotMainPageBinding>()
+            var viewModel = binding!!.viewModel
+            viewModel!!.faq=faq
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RvAdapterSupport.ViewHolder {
-        var binding = SupportPreviewBinding.bind(LayoutInflater.from(parent.context).inflate(R.layout.support_preview, parent, false))
+        var binding = SupportPreviewBinding.bind(LayoutInflater.from(parent.context)
+            .inflate(R.layout.support_preview, parent, false))
 
         return ViewHolder(binding)
     }
