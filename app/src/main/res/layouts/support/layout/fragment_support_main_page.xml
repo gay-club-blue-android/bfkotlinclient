@@ -21,6 +21,16 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_family"
+                android:text="Поддержка"
+                android:textColor="@color/main_color_1"
+                android:textSize="24sp" />
+
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -29,6 +39,7 @@
                 android:cropToPadding="false"
                 android:paddingTop="40sp"
                 android:paddingBottom="20sp"
+
                 app:srcCompat="@drawable/logo" />
 
 
@@ -45,7 +56,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:adapter="@{viewModel.rvAdapterSupport}"
+
                     android:paddingLeft="10sp"
+
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
 
                 </androidx.recyclerview.widget.RecyclerView>
