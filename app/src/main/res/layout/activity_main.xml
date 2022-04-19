@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:background="@color/background_light"
         android:backgroundTint="@color/background_light"
-        android:onBackPressed="@{viewModel.onBackPressedCallback}">
+        >
 
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -23,7 +23,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:onItemSelected="@{(item)-> viewModel.onItemSelected(item)}"
             app:itemIconTint="@color/navigation_bar_green"
             app:itemTextColor="@color/navigation_bar_green"
             app:layout_constraintBottom_toBottomOf="parent"

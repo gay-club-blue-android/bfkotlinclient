@@ -52,7 +52,7 @@ class HttpWorker(private var applicationContext: Context) {
     fun makeStringRequestWithBody(
         httpMethod: Int,
         url: String,
-        successCallbackFunction: (String) -> Unit,
+        successCallbackFunction: (String?) -> Unit,
         body: String,
         httpHeaders: MutableMap<String, String> = hashMapOf(),
         errorCallbackFunction: (VolleyError) -> Unit = ::defaultErrorFunction
