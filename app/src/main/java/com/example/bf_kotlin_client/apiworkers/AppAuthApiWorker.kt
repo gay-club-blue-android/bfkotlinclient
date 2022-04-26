@@ -15,15 +15,15 @@ class AppAuthApiWorker {
     fun authByLoginAndPassword(
         login: String,
         password: String,
-        successCallbackFunction: (String?) -> Unit,
+        deviceId: String,
+        successCallbackFunction: (String) -> Unit,
         errorCallbackFunction: (VolleyError) -> Unit
     ) {
 
-        var appAuthRequest = AppAuthRequest(login, password)
+        var appAuthRequest = AppAuthRequest(login, password, deviceId)
 
         var httpMethod = Request.Method.POST
-        var url = "http://151.248.113.116:8080/sellers/logInByLoginAndPassword" +
-                ""
+        var url = "http://151.248.113.116:8080/mobile/apps/authByLoginAndPassword"
         var request = Gson().toJson(appAuthRequest)
 
         var httpWorker = globalVariables.httpWorker

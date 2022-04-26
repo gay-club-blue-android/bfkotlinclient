@@ -12,5 +12,6 @@ class GlobalVariables private constructor() {
     lateinit var httpWorker: HttpWorker
     lateinit var appDatabase: AppDatabase
     lateinit var fragmentManager: AppFragmentManager
+    lateinit var httpHeaders: MutableMap<String, String>
     lateinit var layoutInflater: LayoutInflater
 }
