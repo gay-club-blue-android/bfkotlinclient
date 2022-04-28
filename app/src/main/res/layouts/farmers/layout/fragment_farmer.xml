@@ -18,6 +18,7 @@
         android:background="@drawable/bg_white_rounded"
         android:orientation="vertical"
         android:paddingLeft="@dimen/padding"
+        android:paddingTop="@dimen/padding"
         android:paddingRight="@dimen/padding">
 
         <LinearLayout
