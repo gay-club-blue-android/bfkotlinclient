@@ -27,16 +27,40 @@ class MainActivity : AppCompatActivity() {
 
         globalVariables.applicationContext = this
         globalVariables.httpWorker = HttpWorker(this)
-        globalVariables.layoutInflater = LayoutInflater.from(this)
+        globalVariables.layoutInflater= LayoutInflater.from(this)
 
         //globalVariables.appDatabase = AppDatabase.getInstance(applicationContext)
 
         var appAuthApiWorker = AppAuthApiWorker()
 
-        var login = "qaz"
-        var password = "zaq"
+        var login = "android"
+        var password = "12345"
+        var deviceId = Settings.Secure.getString(
+            GlobalVariables.instance.applicationContext.contentResolver,
+            Settings.Secure.ANDROID_ID
+        )
 
-       // globalVariables.fragmentManager = AppFragmentManager(supportFragmentManager)
+        appAuthApiWorker.authByLoginAndPassword(
+            login,
+            password,
+            deviceId,
+            ::initializeComponents,
+            ::processError
+        )
+    }
+
+    private fun initializeComponents(data: String) {
+        var response = Gson().fromJson(data, AppAuthResponse::class.java)
+
+        globalVariables.httpHeaders = hashMapOf(
+            "API_KEY" to response.apiKey,
+            "DEVICE_ID" to Settings.Secure.getString(
+                GlobalVariables.instance.applicationContext.contentResolver,
+                Settings.Secure.ANDROID_ID
+            )
+        )
+
+        globalVariables.fragmentManager = AppFragmentManager(supportFragmentManager)
 
         var binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -44,23 +68,15 @@ class MainActivity : AppCompatActivity() {
         var mainActivityViewModel = MainActivityViewModel()
         binding.viewModel = mainActivityViewModel
 
-//        globalVariables.fragmentManager.showTab(ProductsCategoriesFragment)
-
-        appAuthApiWorker.authByLoginAndPassword(
-            login,
-            password,
-            {Toast.makeText(applicationContext,it,Toast.LENGTH_LONG).show()},
-            ::processError
-        )
+        globalVariables.fragmentManager.showTab(ProductsCategoriesFragment)
     }
-
 
     private fun processError(volleyError: VolleyError) {
         if (volleyError.networkResponse == null) {
             var builder = AlertDialog.Builder(this)
             builder.setMessage("Сервер недоступен, приложение будет закрыто")
             builder.setTitle("Ошибка:")
-            builder.setPositiveButton("OK") { _, _ -> finishAffinity() }
+            builder.setPositiveButton("OK") {_,_-> finishAffinity() }
             builder.setCancelable(true)
             builder.create().show()
             return
@@ -74,7 +90,7 @@ class MainActivity : AppCompatActivity() {
         var builder = AlertDialog.Builder(this)
         builder.setMessage("$errorMessage, приложение будет закрыто")
         builder.setTitle("Ошибка сервера:")
-        builder.setPositiveButton("OK") { _, _ -> finishAffinity() }
+        builder.setPositiveButton("OK") {_,_-> finishAffinity() }
         builder.setCancelable(true)
         builder.create().show()
     }

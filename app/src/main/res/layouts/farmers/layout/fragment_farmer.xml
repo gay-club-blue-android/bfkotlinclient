@@ -30,7 +30,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:foregroundGravity="center"
-                app:srcCompat="@drawable/back_button" />
+                app:srcCompat="@drawable/back_button"
+                android:is_back_button="@{true}"/>
 
             <TextView
                 android:layout_width="wrap_content"
