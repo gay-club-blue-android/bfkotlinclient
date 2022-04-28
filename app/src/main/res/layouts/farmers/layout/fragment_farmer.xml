@@ -54,27 +54,30 @@
             android:id="@+id/imageView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:image_bitmap="@{viewModel.picture}" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/main_font_roboto_medium"
-                android:text="Имя"
+                android:text="@{viewModel.farmer.fullName}"
                 android:textSize="20sp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:fontFamily="@font/main_font_roboto_medium"
-                android:text="Фамилия"
-                android:textSize="20sp" />
+                android:text="@{viewModel.farmer.description}"
+                android:textSize="@dimen/description_text_size" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.farmer.phoneNumber}" />
         </LinearLayout>
 
         <LinearLayout
@@ -86,7 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/main_font_roboto_medium"
-                android:text="Email"
+                android:text="@{viewModel.farmer.email}"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -97,11 +100,22 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/main_font_roboto_medium"
-                android:text="Пароль"
-                android:textSize="20sp" />
+                android:text="@{viewModel.farmer.farmerDeliveryTypeName}"
+                android:textSize="@dimen/description_text_size" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.farmer.latLng}"
+                android:textSize="@dimen/description_text_size" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.farmer.pickupAddress}"
+                android:textSize="@dimen/description_text_size" />
 
         </LinearLayout>
 
@@ -114,10 +128,6 @@
             android:text="Создать обьявление"
             android:textColor="@color/background_light"
             android:textColorHint="@color/background_button_white" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
 
     </LinearLayout>
 
