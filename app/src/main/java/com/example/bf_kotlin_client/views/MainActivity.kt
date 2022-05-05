@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         globalVariables.httpWorker = HttpWorker(this)
         globalVariables.layoutInflater= LayoutInflater.from(this)
 
-        //globalVariables.appDatabase = AppDatabase.getInstance(applicationContext)
+        globalVariables.appDatabase = AppDatabase.getInstance(applicationContext)
 
         var appAuthApiWorker = AppAuthApiWorker()
 

@@ -10,7 +10,7 @@ class GlobalVariables private constructor() {
     }
 
     lateinit var onBackPressedCallback: OnBackPressedCallback
-   lateinit var applicationContext: Context
+    lateinit var applicationContext: Context
     lateinit var httpWorker: HttpWorker
     lateinit var appDatabase: AppDatabase
     lateinit var fragmentManager: AppFragmentManager

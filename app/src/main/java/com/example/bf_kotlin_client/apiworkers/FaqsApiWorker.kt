@@ -15,9 +15,9 @@ class FaqsApiWorker {
      * сущность [com.example.bf_kotlin_client.dtos.responses.FaqResponseDto] в виде JSON строки
      */
     fun getAll(successCallbackFunction: (String) -> Unit) {
-        val httpMethod = Request.Method.GET
-        val url = "http://151.248.113.116:8080/mobile/faqs/getAll"
-        val httpWorker = globalVariables.httpWorker
+        var httpMethod = Request.Method.GET
+        var url = "http://151.248.113.116:8080/mobile/faqs/getAll"
+        var httpWorker = globalVariables.httpWorker
         httpWorker.makeStringRequestWithoutBody(
             httpMethod,
             url,

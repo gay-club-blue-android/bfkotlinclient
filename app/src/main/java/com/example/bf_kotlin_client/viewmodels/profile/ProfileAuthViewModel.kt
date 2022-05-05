@@ -4,14 +4,16 @@ import androidx.appcompat.app.AlertDialog
 import androidx.databinding.ObservableField
 import com.android.volley.VolleyError
 import com.example.bf_kotlin_client.apiworkers.ClientsApiWorker
-import com.example.bf_kotlin_client.databinding.FragmentProductsInCategoryBinding
-import com.example.bf_kotlin_client.databinding.FragmentProfileAuthBinding
 import com.example.bf_kotlin_client.databinding.FragmentProfileBinding
 import com.example.bf_kotlin_client.dtos.entities.ServerError
 import com.example.bf_kotlin_client.dtos.responses.ClientResponse
+import com.example.bf_kotlin_client.localdb.models.KeyValuePair
 import com.example.bf_kotlin_client.utils.AppFragmentManager
 import com.example.bf_kotlin_client.utils.GlobalVariables
 import com.google.gson.Gson
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class ProfileAuthViewModel {
     private var clientsApiWorker = ClientsApiWorker()
@@ -19,6 +21,25 @@ class ProfileAuthViewModel {
 
     var emailField = ObservableField("")
     var passwordField = ObservableField("")
+
+    init {
+        var keyValuePairsRepository = globalVariables.appDatabase.keyValuePairsRepository
+        var email: String? = null
+        var password: String? = null
+        GlobalScope.launch(Dispatchers.IO) {
+            email = keyValuePairsRepository.getByKey("email")
+            password = keyValuePairsRepository.getByKey("password")
+            setEmailAndPassword(email, password)
+        }
+    }
+
+    private fun setEmailAndPassword(email: String?, password: String?) {
+        if (email != null && password != null) {
+            this.emailField.set(email)
+            this.passwordField.set(password)
+        }
+    }
+
 
     fun auth() {
         var email = emailField.get().toString()
@@ -28,7 +49,7 @@ class ProfileAuthViewModel {
     }
 
     private fun authSuccess(data: String) {
-        var response = Gson().fromJson(data,ClientResponse::class.java)
+        var response = Gson().fromJson(data, ClientResponse::class.java)
 
         var fm = globalVariables.fragmentManager
         fm.openFragmentAboveMain(AppFragmentManager.FragmentsName.ProfileFragment)
@@ -37,6 +58,12 @@ class ProfileAuthViewModel {
         var viewModel = binding.viewModel!!
 
         viewModel.client = response;
+
+        var keyValuePairsRepository = globalVariables.appDatabase.keyValuePairsRepository
+        GlobalScope.launch(Dispatchers.IO) {
+            keyValuePairsRepository.insert(KeyValuePair("email", emailField.get().toString()))
+            keyValuePairsRepository.insert(KeyValuePair("password", passwordField.get().toString()))
+        }
     }
 
     private fun authError(volleyError: VolleyError) {

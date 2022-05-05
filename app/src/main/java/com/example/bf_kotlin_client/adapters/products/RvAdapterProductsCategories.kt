@@ -97,7 +97,7 @@ class RvAdapterProductsCategories(private var categories: ArrayList<ProductCateg
      * @see ViewModel
      */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val viewModel = ViewModel()
+        var viewModel = ViewModel()
         holder.binding.viewModel = viewModel
         viewModel.productCategory = categories[position]
     }

@@ -91,7 +91,7 @@ class RvAdapterProducts(private var products: ArrayList<Product>) :
      * @see ViewModel
      */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val viewModel = ViewModel()
+        var viewModel = ViewModel()
         viewModel.product = products[position]
         holder.binding.viewModel = viewModel
     }

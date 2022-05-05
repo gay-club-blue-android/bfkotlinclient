@@ -16,10 +16,10 @@ class ProductsCategoriesApiWorker {
      * сущность [com.example.bf_kotlin_client.dtos.responses.ProductsCategoriesResponse] в виде JSON строки
      */
     fun getAll(successCallbackFunction: (String) -> Unit) {
-        val httpMethod = Request.Method.GET
-        val url = "http://151.248.113.116:8080/mobile/productsCategories/getAll"
+        var httpMethod = Request.Method.GET
+        var url = "http://151.248.113.116:8080/mobile/productsCategories/getAll"
 
-        val httpWorker = globalVariables.httpWorker
+        var httpWorker = globalVariables.httpWorker
 
         httpWorker.makeStringRequestWithoutBody(
             httpMethod,
