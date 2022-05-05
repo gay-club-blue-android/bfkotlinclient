@@ -148,6 +148,16 @@
                     android:textColorHint="@color/background_button_white"
                      />
 
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:backgroundTint="#B91D1D"
+                    android:fontFamily="@font/main_font_roboto_medium"
+                    android:text="Выйти нахуй"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/background_button_white" />
+
             </LinearLayout>
         </ScrollView>
 
