@@ -87,7 +87,7 @@ class RvAdapterFarmers(private var farmers: ArrayList<Farmer>) :
      * @see ViewModel
      */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val viewModel = ViewModel()
+        var viewModel = ViewModel()
         viewModel.farmer = farmers[position]
         holder.binding.viewModel = viewModel
     }
