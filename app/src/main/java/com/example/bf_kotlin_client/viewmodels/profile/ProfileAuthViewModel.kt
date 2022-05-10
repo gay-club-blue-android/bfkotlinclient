@@ -9,6 +9,7 @@ import com.example.bf_kotlin_client.dtos.entities.ServerError
 import com.example.bf_kotlin_client.dtos.responses.ClientResponse
 import com.example.bf_kotlin_client.localdb.models.KeyValuePair
 import com.example.bf_kotlin_client.utils.AppFragmentManager
+import com.example.bf_kotlin_client.utils.AppFragmentManager.FragmentsName.ProfileFragment
 import com.example.bf_kotlin_client.utils.GlobalVariables
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
@@ -52,7 +53,7 @@ class ProfileAuthViewModel {
         var response = Gson().fromJson(data, ClientResponse::class.java)
 
         var fm = globalVariables.fragmentManager
-        fm.openFragmentAboveMain(AppFragmentManager.FragmentsName.ProfileFragment)
+        fm.showTab(ProfileFragment)
 
         var binding = fm.getCurrentFragmentBinding<FragmentProfileBinding>()!!
         var viewModel = binding.viewModel!!

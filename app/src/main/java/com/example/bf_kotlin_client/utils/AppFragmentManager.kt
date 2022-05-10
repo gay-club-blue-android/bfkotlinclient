@@ -18,10 +18,11 @@ import com.example.bf_kotlin_client.fragments.support.SupportAnswersPageFragment
 class AppFragmentManager(private var fragmentManager: FragmentManager) {
 
     private var tabs: MutableMap<FragmentsName, ArrayList<Fragment>> = mutableMapOf(
+        FragmentsName.ProfileAuthFragment to arrayListOf(ProfileAuthFragment()),
         FragmentsName.FarmersListFragment to arrayListOf(FarmersListFragment()),
         FragmentsName.FavoriteProductsFragment to arrayListOf(FavoriteProductsFragment()),
         FragmentsName.ProductsCategoriesFragment to arrayListOf(ProductsCategoriesFragment()),
-        FragmentsName.ProfileAuthFragment to arrayListOf(ProfileAuthFragment()),
+        FragmentsName.ProfileFragment to arrayListOf(ProfileFragment()),
         FragmentsName.SupportQuestionsPageFragment to arrayListOf(SupportQuestionsPageFragment()),
     )
     private var currentTab = tabs.entries.first()
@@ -86,7 +87,6 @@ class AppFragmentManager(private var fragmentManager: FragmentManager) {
             FragmentsName.ProductFragment -> ProductFragment()
             FragmentsName.SupportAnswersPageFragment -> SupportAnswersPageFragment()
             FragmentsName.FarmerFragment-> FarmerFragment()
-            FragmentsName.ProfileFragment-> ProfileFragment()
             else -> throw IllegalArgumentException("This Fragment can't be instantiate")
         }
 

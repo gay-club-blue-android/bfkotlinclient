@@ -13,6 +13,7 @@ import com.example.bf_kotlin_client.dtos.entities.ServerError
 import com.example.bf_kotlin_client.dtos.responses.AppAuthResponse
 import com.example.bf_kotlin_client.utils.*
 import com.example.bf_kotlin_client.utils.AppFragmentManager.FragmentsName.ProductsCategoriesFragment
+import com.example.bf_kotlin_client.utils.AppFragmentManager.FragmentsName.ProfileAuthFragment
 import com.example.bf_kotlin_client.viewmodels.MainActivityViewModel
 import com.google.gson.Gson
 import java.util.*
@@ -68,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         var mainActivityViewModel = MainActivityViewModel()
         binding.viewModel = mainActivityViewModel
 
-        globalVariables.fragmentManager.showTab(ProductsCategoriesFragment)
+        globalVariables.fragmentManager.showTab(ProfileAuthFragment)
     }
 
     private fun processError(volleyError: VolleyError) {

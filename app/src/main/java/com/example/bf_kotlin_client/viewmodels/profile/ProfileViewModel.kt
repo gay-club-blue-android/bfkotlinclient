@@ -1,6 +1,8 @@
 package com.example.bf_kotlin_client.viewmodels.profile
 
 import com.example.bf_kotlin_client.dtos.responses.ClientResponse
+import com.example.bf_kotlin_client.utils.AppFragmentManager
+import com.example.bf_kotlin_client.utils.AppFragmentManager.FragmentsName.ProfileAuthFragment
 import com.example.bf_kotlin_client.utils.GlobalVariables
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -17,6 +19,6 @@ class ProfileViewModel {
             keyValuePairsRepository.deleteByKey("password")
         }
 
-        globalVariables.fragmentManager.popBackStack();
+        globalVariables.fragmentManager.showTab(ProfileAuthFragment)
     }
 }
