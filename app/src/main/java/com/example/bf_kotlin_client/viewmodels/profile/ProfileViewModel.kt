@@ -8,10 +8,21 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
+/**
+ * Логика фрагмента [профиля][com.example.bf_kotlin_client.fragments.profile.ProfileFragment]
+ *
+ */
 class ProfileViewModel {
+    /**
+     * Сущность клиента, которая отображается в профиля
+     */
     var client = ClientResponse()
     private var globalVariables = GlobalVariables.instance
 
+    /**
+     * Удаляет из локальной базы данных логин и пароль и открывает фрагмент регистрации
+     *
+     */
     fun logout(){
         var keyValuePairsRepository = globalVariables.appDatabase.keyValuePairsRepository
         GlobalScope.launch(Dispatchers.IO) {
