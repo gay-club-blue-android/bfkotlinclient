@@ -16,9 +16,12 @@ class ProfileViewModel {
     /**
      * Сущность клиента, которая отображается в профиля
      */
-    var client = ClientResponse()
+    var client: ClientResponse? = null
     private var globalVariables = GlobalVariables.instance
-
+    fun onFragmentShow() {
+        if (client == null)
+            globalVariables.fragmentManager.showTab(ProfileAuthFragment)
+    }
     /**
      * Удаляет из локальной базы данных логин и пароль и открывает фрагмент регистрации
      *
