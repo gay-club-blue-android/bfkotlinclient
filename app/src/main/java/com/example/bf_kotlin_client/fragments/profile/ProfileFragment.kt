@@ -7,11 +7,11 @@ import com.example.bf_kotlin_client.databinding.FragmentProfileBinding
 import com.example.bf_kotlin_client.viewmodels.profile.ProfileViewModel
 
 class ProfileFragment : Fragment() {
-    lateinit var binding:FragmentProfileBinding
+    lateinit var binding: FragmentProfileBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
 
         binding = FragmentProfileBinding.inflate(layoutInflater)
@@ -21,8 +21,9 @@ class ProfileFragment : Fragment() {
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
-        binding.viewModel?.onFragmentShow()
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if (!hidden)
+            binding.viewModel?.onFragmentShow()
     }
 }

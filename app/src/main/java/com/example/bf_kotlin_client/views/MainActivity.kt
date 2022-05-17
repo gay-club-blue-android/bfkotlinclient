@@ -61,15 +61,15 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        globalVariables.fragmentManager = AppFragmentManager(supportFragmentManager)
 
         var binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        globalVariables.fragmentManager = AppFragmentManager(supportFragmentManager)
 
         var mainActivityViewModel = MainActivityViewModel()
         binding.viewModel = mainActivityViewModel
 
-        globalVariables.fragmentManager.showTab(ProfileAuthFragment)
+        globalVariables.fragmentManager.showTab(ProductsCategoriesFragment)
     }
 
     private fun processError(volleyError: VolleyError) {
