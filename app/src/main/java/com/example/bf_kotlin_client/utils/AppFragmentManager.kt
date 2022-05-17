@@ -41,7 +41,8 @@ class AppFragmentManager(private var fragmentManager: FragmentManager) {
     }
 
     init {
-        GlobalVariables.instance.fragmentManager=this
+        //GlobalVariables.instance.fragmentManager=this
+
         var containerId = R.id.frameLayoutActivityMain
         var fragmentTransaction = fragmentManager.beginTransaction()
         for (tab in tabs) {
