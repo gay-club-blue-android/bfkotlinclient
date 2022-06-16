@@ -18,13 +18,13 @@ class ProductsApiWorker {
      */
     fun getAllByCategoryId(categoryId:Int, successCallbackFunction: (String) -> Unit) {
         var httpMethod = Request.Method.GET
-        var url = "http://151.248.113.116:8080/mobile/products/getAllByCategoryId/$categoryId"
+        var localUrl = "products/getAllByCategoryId/$categoryId"
 
         var httpWorker = globalVariables.httpWorker
 
         httpWorker.makeStringRequestWithoutBody(
             httpMethod,
-            url,
+            localUrl,
             successCallbackFunction,
             globalVariables.httpHeaders
         )

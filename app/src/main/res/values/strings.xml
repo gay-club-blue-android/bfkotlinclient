@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">bf-kotlin-client</string>
+    <string name="serverUrl">http://151.248.113.116:8080/mobile/</string>
 </resources>

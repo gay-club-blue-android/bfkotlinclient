@@ -17,13 +17,13 @@ class ProductsCategoriesApiWorker {
      */
     fun getAll(successCallbackFunction: (String) -> Unit) {
         var httpMethod = Request.Method.GET
-        var url = "http://151.248.113.116:8080/mobile/productsCategories/getAll"
+        var localUrl = "productsCategories/getAll"
 
         var httpWorker = globalVariables.httpWorker
 
         httpWorker.makeStringRequestWithoutBody(
             httpMethod,
-            url,
+            localUrl,
             successCallbackFunction,
             globalVariables.httpHeaders
         )

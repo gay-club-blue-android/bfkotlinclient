@@ -1,7 +1,5 @@
 package com.example.bf_kotlin_client.apiworkers
 
-import android.annotation.SuppressLint
-import android.provider.Settings
 import com.android.volley.Request
 import com.android.volley.VolleyError
 import com.example.bf_kotlin_client.dtos.requests.AppAuthRequest
@@ -37,14 +35,14 @@ class AppAuthApiWorker {
         var appAuthRequest = AppAuthRequest(login, password, deviceId)
 
         var httpMethod = Request.Method.POST
-        var url = "http://151.248.113.116:8080/mobile/apps/authByLoginAndPassword"
+        var localUrl = "apps/authByLoginAndPassword"
         var request = Gson().toJson(appAuthRequest)
 
         var httpWorker = globalVariables.httpWorker
 
         httpWorker.makeStringRequestWithBody(
             httpMethod,
-            url,
+            localUrl,
             successCallbackFunction,
             request,
             hashMapOf(),

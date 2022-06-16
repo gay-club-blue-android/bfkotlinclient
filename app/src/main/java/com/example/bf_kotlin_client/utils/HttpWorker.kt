@@ -4,10 +4,12 @@ import android.content.Context
 import android.widget.Toast
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.*
+import com.example.bf_kotlin_client.R
 import com.example.bf_kotlin_client.dtos.entities.ServerError
 import com.google.gson.Gson
 
 class HttpWorker(private var applicationContext: Context) {
+    val serverUrl = applicationContext.getString(R.string.serverUrl)
     private var volleyQueue = Volley.newRequestQueue(applicationContext)
 
     private fun defaultErrorFunction(volleyError: VolleyError) {
@@ -30,14 +32,14 @@ class HttpWorker(private var applicationContext: Context) {
 
     fun makeStringRequestWithoutBody(
         httpMethod: Int,
-        url: String,
+        localUrl: String,
         successCallbackFunction: (String) -> Unit,
         httpHeaders: MutableMap<String, String> = hashMapOf(),
         errorCallbackFunction: (VolleyError) -> Unit = ::defaultErrorFunction
     ) {
         var request = object : StringRequest(
             httpMethod,
-            url,
+            serverUrl+localUrl,
             successCallbackFunction,
             errorCallbackFunction
         ) {
@@ -51,7 +53,7 @@ class HttpWorker(private var applicationContext: Context) {
 
     fun makeStringRequestWithBody(
         httpMethod: Int,
-        url: String,
+        localUrl: String,
         successCallbackFunction: (String) -> Unit,
         body: String,
         httpHeaders: MutableMap<String, String> = hashMapOf(),
@@ -59,7 +61,7 @@ class HttpWorker(private var applicationContext: Context) {
     ) {
         var request = object : StringRequest(
             httpMethod,
-            url,
+            serverUrl+localUrl,
             successCallbackFunction,
             errorCallbackFunction
         ) {

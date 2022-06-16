@@ -23,8 +23,9 @@ class ImagesApiWorker {
      * @return запрашиваемая картинка
      */
     fun getPictureByName(controllerName: String, pictureName: String): Bitmap {
+        var serverUrl = globalVariables.applicationContext.getString(R.string.serverUrl)
         var glideUrl = GlideUrl(
-            "http://151.248.113.116:8080/mobile/${controllerName}/getPictureByName/${pictureName}",
+            "$serverUrl$controllerName/getPictureByName/$pictureName",
             Headers {
                 globalVariables.httpHeaders
             }
