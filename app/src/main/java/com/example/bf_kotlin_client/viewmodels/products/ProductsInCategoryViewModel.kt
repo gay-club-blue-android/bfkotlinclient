@@ -3,10 +3,13 @@ package com.example.bf_kotlin_client.viewmodels.products
 import androidx.databinding.ObservableField
 import com.example.bf_kotlin_client.adapters.products.RvAdapterProducts
 import com.example.bf_kotlin_client.apiworkers.ProductsApiWorker
+import com.example.bf_kotlin_client.dtos.entities.Product
 import com.example.bf_kotlin_client.dtos.entities.ProductCategory
 import com.example.bf_kotlin_client.dtos.responses.FarmersResponseDto
 import com.example.bf_kotlin_client.dtos.responses.ProductsResponseDto
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+
 /**
  * Логика фрагмента [списка продуктов в категории][com.example.bf_kotlin_client.fragments.products.ProductsInCategoryFragment]
  *
@@ -54,6 +57,10 @@ class ProductsInCategoryViewModel {
      * @param jsonData [ProductsResponseDto] сущность в виде JSON строки
      */
     private fun updateRv(jsonData: String) {
+
+        val itemType = object : TypeToken<List<Product>>() {}.type
+        var response = Gson().fromJson<List<ProductCategory>>(jsonData, itemType)
+
         var response = Gson().fromJson(jsonData, ProductsResponseDto::class.java)
         rvProductsAdapter.set(RvAdapterProducts(response.products))
     }

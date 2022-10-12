@@ -24,7 +24,7 @@ import kotlinx.coroutines.launch
  * а такжу обеспечивающий привязку xml к viewmodel
  * @param categories список сущностей, который будет отображён
  */
-class RvAdapterProductsCategories(private var categories: ArrayList<ProductCategory>) :
+class RvAdapterProductsCategories(private var categories: List<ProductCategory>) :
     RecyclerView.Adapter<RvAdapterProductsCategories.ViewHolder>() {
 
     private var globalVariables = GlobalVariables.instance
