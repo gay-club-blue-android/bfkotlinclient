@@ -21,7 +21,7 @@ import kotlinx.coroutines.*
  * @param products список сущностей, который будет отображён
  */
 
-class RvAdapterProducts(private var products: ArrayList<Product>) :
+class RvAdapterProducts(private var products: List<Product>) :
     RecyclerView.Adapter<RvAdapterProducts.ViewHolder>() {
 
     private var imageApiWorker = ImagesApiWorker()

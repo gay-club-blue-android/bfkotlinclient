@@ -17,7 +17,7 @@ import java.util.ArrayList
  * а такжу обеспечивающий привязку xml к viewmodel
  * @param faqs список сущностей, который будет отображён
  */
-class RvAdapterSupport(private var faqs: ArrayList<Faq>) :
+class RvAdapterSupport(private var faqs: List<Faq>) :
     RecyclerView.Adapter<RvAdapterSupport.ViewHolder>() {
 
     private var globalVariables = GlobalVariables.instance

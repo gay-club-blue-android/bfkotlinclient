@@ -4,8 +4,6 @@ import androidx.databinding.ObservableField
 import com.example.bf_kotlin_client.adapters.products.RvAdapterProductsCategories
 import com.example.bf_kotlin_client.apiworkers.ProductsCategoriesApiWorker
 import com.example.bf_kotlin_client.dtos.entities.ProductCategory
-import com.example.bf_kotlin_client.dtos.responses.FarmersResponseDto
-import com.example.bf_kotlin_client.dtos.responses.ProductsCategoriesResponse
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

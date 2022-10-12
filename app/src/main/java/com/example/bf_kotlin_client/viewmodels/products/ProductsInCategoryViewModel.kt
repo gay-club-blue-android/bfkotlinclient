@@ -5,8 +5,6 @@ import com.example.bf_kotlin_client.adapters.products.RvAdapterProducts
 import com.example.bf_kotlin_client.apiworkers.ProductsApiWorker
 import com.example.bf_kotlin_client.dtos.entities.Product
 import com.example.bf_kotlin_client.dtos.entities.ProductCategory
-import com.example.bf_kotlin_client.dtos.responses.FarmersResponseDto
-import com.example.bf_kotlin_client.dtos.responses.ProductsResponseDto
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -59,9 +57,8 @@ class ProductsInCategoryViewModel {
     private fun updateRv(jsonData: String) {
 
         val itemType = object : TypeToken<List<Product>>() {}.type
-        var response = Gson().fromJson<List<ProductCategory>>(jsonData, itemType)
+        var response = Gson().fromJson<List<Product>>(jsonData, itemType)
 
-        var response = Gson().fromJson(jsonData, ProductsResponseDto::class.java)
-        rvProductsAdapter.set(RvAdapterProducts(response.products))
+        rvProductsAdapter.set(RvAdapterProducts(response))
     }
 }
