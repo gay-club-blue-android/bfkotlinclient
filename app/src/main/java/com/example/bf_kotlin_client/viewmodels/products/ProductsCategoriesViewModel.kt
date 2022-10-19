@@ -3,9 +3,9 @@ package com.example.bf_kotlin_client.viewmodels.products
 import androidx.databinding.ObservableField
 import com.example.bf_kotlin_client.adapters.products.RvAdapterProductsCategories
 import com.example.bf_kotlin_client.apiworkers.ProductsCategoriesApiWorker
-import com.example.bf_kotlin_client.dtos.responses.FarmersResponseDto
-import com.example.bf_kotlin_client.dtos.responses.ProductsCategoriesResponse
+import com.example.bf_kotlin_client.dtos.entities.ProductCategory
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 /**
  * Логика фрагмента [списка категорий продуктов][com.example.bf_kotlin_client.fragments.products.ProductsCategoriesFragment]
@@ -44,9 +44,10 @@ class ProductsCategoriesViewModel {
      * @param jsonData [ProductsCategoriesResponse] сущность в виде JSON строки
      */
     private fun updateRv(jsonData: String) {
-        var response = Gson().fromJson(jsonData, ProductsCategoriesResponse::class.java)
 
-        rvProductsAdapter.set(RvAdapterProductsCategories(response.productCategories))
+        val itemType = object : TypeToken<ArrayList<ProductCategory>>() {}.type
+        var response = Gson().fromJson<ArrayList<ProductCategory>>(jsonData, itemType)
 
+        rvProductsAdapter.set(RvAdapterProductsCategories(response))
     }
 }

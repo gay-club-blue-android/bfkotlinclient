@@ -3,8 +3,9 @@ package com.example.bf_kotlin_client.viewmodels.farmers
 import androidx.databinding.ObservableField
 import com.example.bf_kotlin_client.adapters.farmers.RvAdapterFarmers
 import com.example.bf_kotlin_client.apiworkers.FarmersApiWorker
-import com.example.bf_kotlin_client.dtos.responses.FarmersResponseDto
+import com.example.bf_kotlin_client.dtos.entities.Farmer
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 /**
  * Логика фрагмента [списка фермеров][com.example.bf_kotlin_client.fragments.farmers.FarmersListFragment]
@@ -45,8 +46,11 @@ class FarmersListViewModel {
      * @param jsonData [FarmersResponseDto] сущность в виде JSON строки
      */
     private fun updateRv(jsonData: String) {
-        var response = Gson().fromJson(jsonData, FarmersResponseDto::class.java)
-        rvFarmersAdapter.set(RvAdapterFarmers(response.farmers))
+
+        val itemType = object : TypeToken<ArrayList<Farmer>>() {}.type
+        var response = Gson().fromJson<ArrayList<Farmer>>(jsonData, itemType)
+
+        rvFarmersAdapter.set(RvAdapterFarmers(response))
 
     }
 }
