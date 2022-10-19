@@ -56,7 +56,8 @@ class AppFragmentManager(private var fragmentManager: FragmentManager) {
         if (fragmentName !in tabs.keys) {
             throw IllegalArgumentException("$fragmentName is not main fragment")
         }
-        //fragmentManager.executePendingTransactions()//защита от асинхронности
+        fragmentManager.executePendingTransactions()//защита от асинхронности
+
         var newTab = tabs.entries.first { it.key == fragmentName }
         if (newTab == currentTab) {
             refreshCurrentTab()
@@ -72,7 +73,8 @@ class AppFragmentManager(private var fragmentManager: FragmentManager) {
     }
 
     fun refreshCurrentTab() {
-        //fragmentManager.executePendingTransactions()//защита от асинхронности
+        fragmentManager.executePendingTransactions()//защита от асинхронности
+
         var newTabMainFragment =
             currentTab.value.first().javaClass.constructors[0].newInstance() as Fragment
         var fragmentTransaction = fragmentManager.beginTransaction()
@@ -84,7 +86,7 @@ class AppFragmentManager(private var fragmentManager: FragmentManager) {
     }
 
     fun openFragmentAboveMain(fragmentName: FragmentsName) {
-        //fragmentManager.executePendingTransactions()//защита от асинхронности
+        fragmentManager.executePendingTransactions()//защита от асинхронности
 
         var newFragment: Fragment = when (fragmentName) {
             FragmentsName.ProductsInCategoryFragment -> ProductsInCategoryFragment()
@@ -108,12 +110,12 @@ class AppFragmentManager(private var fragmentManager: FragmentManager) {
     }
 
     fun <T : ViewDataBinding?> getCurrentFragmentBinding(): T? {
-        //fragmentManager.executePendingTransactions()//защита от асинхронности
+        fragmentManager.executePendingTransactions()//защита от асинхронности
         return DataBindingUtil.getBinding<T>(currentTab.value.last().requireView())
     }
 
     fun popBackStack() {
-        //fragmentManager.executePendingTransactions()//защита от асинхронности
+        fragmentManager.executePendingTransactions()//защита от асинхронности
         var currentTabFragments = currentTab.value
         if (currentTabFragments.size == 1) {
             refreshCurrentTab()

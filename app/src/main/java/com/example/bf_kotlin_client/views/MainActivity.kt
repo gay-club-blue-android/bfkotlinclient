@@ -61,7 +61,6 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-
         var binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         globalVariables.fragmentManager = AppFragmentManager(supportFragmentManager)

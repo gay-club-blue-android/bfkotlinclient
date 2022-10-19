@@ -18,7 +18,7 @@ import kotlinx.coroutines.*
  * а такжу обеспечивающий привязку xml к viewmodel
  * @param farmers список сущностей, который будет отображён
  */
-class RvAdapterFarmers(private var farmers: List<Farmer>) :
+class RvAdapterFarmers(private var farmers: ArrayList<Farmer>) :
     RecyclerView.Adapter<RvAdapterFarmers.ViewHolder>() {
 
     private var imageApiWorker = ImagesApiWorker()

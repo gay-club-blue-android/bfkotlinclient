@@ -45,8 +45,8 @@ class ProductsCategoriesViewModel {
      */
     private fun updateRv(jsonData: String) {
 
-        val itemType = object : TypeToken<List<ProductCategory>>() {}.type
-        var response = Gson().fromJson<List<ProductCategory>>(jsonData, itemType)
+        val itemType = object : TypeToken<ArrayList<ProductCategory>>() {}.type
+        var response = Gson().fromJson<ArrayList<ProductCategory>>(jsonData, itemType)
 
         rvProductsAdapter.set(RvAdapterProductsCategories(response))
     }

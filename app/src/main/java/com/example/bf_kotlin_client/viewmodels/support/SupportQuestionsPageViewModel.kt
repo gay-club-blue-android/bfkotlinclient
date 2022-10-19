@@ -37,8 +37,8 @@ class SupportQuestionsPageViewModel {
      * @param jsonData [FaqResponseDto] сущность в виде JSON строки
      */
     fun updateRv(jsonData: String){
-        val itemType = object : TypeToken<List<Faq>>() {}.type
-        var response = Gson().fromJson<List<Faq>>(jsonData, itemType)
+        val itemType = object : TypeToken<ArrayList<Faq>>() {}.type
+        var response = Gson().fromJson<ArrayList<Faq>>(jsonData, itemType)
 
         rvAdapterSupport.set(RvAdapterSupport(response))
     }

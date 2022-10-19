@@ -47,8 +47,8 @@ class FarmersListViewModel {
      */
     private fun updateRv(jsonData: String) {
 
-        val itemType = object : TypeToken<List<Farmer>>() {}.type
-        var response = Gson().fromJson<List<Farmer>>(jsonData, itemType)
+        val itemType = object : TypeToken<ArrayList<Farmer>>() {}.type
+        var response = Gson().fromJson<ArrayList<Farmer>>(jsonData, itemType)
 
         rvFarmersAdapter.set(RvAdapterFarmers(response))
 
